@@ -7,9 +7,18 @@ package transfers;
 
 /**
  *
- * @author HP
+ * @author Tomasik
  */
 public abstract class Transfer {
+
+    private int id;
+    private String accounttype;
+    private String currency;
+    private String date;
+    private String description;
+    private Double amount;
+    private Boolean debit;
+    private String label;
 
     public int getId() {
         return id;
@@ -74,14 +83,6 @@ public abstract class Transfer {
     public void setLabel(String label) {
         this.label = label;
     }
-    private int id;
-    private String accounttype;
-    private String currency;
-    private String date;
-    private String description;
-    private Double amount;
-    private Boolean debit;
-    private String label;
 
     public Transfer(int id, String accounttype, String currency, String date, String description, Double amount, Boolean debit, String label) {
         this.id = id;
@@ -92,6 +93,11 @@ public abstract class Transfer {
         this.amount = amount;
         this.debit = debit;
         this.label = label;
+    }
+
+    @Override
+    public String toString() {
+        return "Transfer{" + "id=" + id + ", accounttype=" + accounttype + ", currency=" + currency + ", date=" + date + ", description=" + description + ", amount=" + amount + ", debit=" + debit + ", label=" + label + '}';
     }
 
 }

@@ -28,7 +28,7 @@ import transfers.Transfers;
 
 /**
  *
- * @author HP
+ * @author Tomasik
  */
 public class Main {
 
@@ -68,25 +68,10 @@ public class Main {
         try {
             records = readData();
 
-            for (int i = 0; i < records.size(); i++) {
-
-                if (records.get(i).get(7).equals("Mobile")) {
-                    Mobile mobile = new Mobile(Integer.parseInt(records.get(i).get(0)),
-                            records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                            records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                            Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                    );
-
-                    mobiles.add(mobile);
-
-                }
-
-            }
-
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        startLoopFor(records);
         return mobiles;
     }
 
@@ -97,18 +82,7 @@ public class Main {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).get(7).equals("Cash")) {
-                Cash cash = new Cash(Integer.parseInt(records.get(i).get(0)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
-
-                cashes.add(cash);
-
-            }
-        }
+        startLoopFor(records);
 
         return cashes;
 
@@ -121,20 +95,7 @@ public class Main {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).get(7).equals("Credit Card")) {
-                CreditCard card = new CreditCard(Integer.parseInt(records.get(i).get(0)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
-
-                cards.add(card);
-
-            }
-        }
-
+        startLoopFor(records);
         return cards;
     }
 
@@ -143,22 +104,10 @@ public class Main {
         try {
             records = readData();
 
-            for (int i = 0; i < records.size(); i++) {
-                if (records.get(i).get(7).equals("Interest income")) {
-                    InterestIncome interest = new InterestIncome(Integer.parseInt(records.get(i).get(0)),
-                            records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                            records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                            Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                    );
-
-                    interests.add(interest);
-
-                }
-            }
-
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+        startLoopFor(records);
         return interests;
     }
 
@@ -168,18 +117,7 @@ public class Main {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).get(7).startsWith("\"")) {
-                Grocery grocery = new Grocery(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
-
-                groceries.add(grocery);
-
-            }
-        }
+        startLoopFor(records);
         return groceries;
 
     }
@@ -190,20 +128,7 @@ public class Main {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).get(7).startsWith("Bank charges")) {
-                BankCharges Bankcharges = new BankCharges(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
-
-                charges.add(Bankcharges);
-
-            }
-        }
-
+        startLoopFor(records);
         return charges;
 
     }
@@ -215,18 +140,7 @@ public class Main {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).get(7).startsWith("Salary or Wages (Main)")) {
-                Salary salary = new Salary(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
-
-                salaries.add(salary);
-
-            }
-        }
+        startLoopFor(records);
         return salaries;
 
     }
@@ -237,45 +151,19 @@ public class Main {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).get(7).startsWith("Saving (general)")) {
-                Saving saving = new Saving(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
-
-                savings.add(saving);
-
-            }
-        }
-
+        startLoopFor(records);
         return savings;
 
     }
 
     public static List parseInterestCharges() {
+
         try {
             records = readData();
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        for (int i = 0; i < records.size(); i++) {
-
-            if (records.get(i).get(7).startsWith("Interest charges")) {
-                InterestCharges InterestCharge = new InterestCharges(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
-
-                interestCharges.add(InterestCharge);
-
-            }
-        }
-
+        startLoopFor(records);
         return interestCharges;
     }
 
@@ -287,9 +175,15 @@ public class Main {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        startLoopFor(records);
+        return transfers;
+    }
+
+    public static void startLoopFor(List<List<String>> records) {
+
         for (int i = 0; i < records.size(); i++) {
 
-            if (records.get(i).get(7).startsWith("Transfers")) {
+            if (records.get(i).get(7).equals("Transfers")) {
                 Transfers transfer = new Transfers(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
                         records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
                         records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
@@ -299,10 +193,103 @@ public class Main {
                 transfers.add(transfer);
 
             }
+
+            if (records.get(i).get(7).equals("Interest charges")) {
+                InterestCharges InterestCharge = new InterestCharges(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
+                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
+                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                );
+
+                interestCharges.add(InterestCharge);
+
+            }
+
+            if (records.get(i).get(7).equals("Saving (general)")) {
+                Saving saving = new Saving(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
+                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
+                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                );
+
+                savings.add(saving);
+            }
+
+            if (records.get(i).get(7).equals("Salary or Wages (Main)")) {
+                Salary salary = new Salary(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
+                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
+                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                );
+
+                salaries.add(salary);
+
+            }
+
+            if (records.get(i).get(7).equals("Bank charges")) {
+                BankCharges Bankcharges = new BankCharges(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
+                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
+                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                );
+                charges.add(Bankcharges);
+            }
+
+            if (records.get(i).get(7).startsWith("\"")) {
+                Grocery grocery = new Grocery(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
+                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
+                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                );
+
+                groceries.add(grocery);
+            }
+
+            if (records.get(i).get(7).equals("Interest income")) {
+                InterestIncome interest = new InterestIncome(Integer.parseInt(records.get(i).get(0)),
+                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
+                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                );
+
+                interests.add(interest);
+
+            }
+
+            if (records.get(i).get(7).equals("Credit Card")) {
+                CreditCard card = new CreditCard(Integer.parseInt(records.get(i).get(0)),
+                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
+                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                );
+
+                cards.add(card);
+
+            }
+
+            if (records.get(i).get(7).equals("Cash")) {
+                Cash cash = new Cash(Integer.parseInt(records.get(i).get(0)),
+                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
+                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                );
+
+                cashes.add(cash);
+
+            }
+
+            if (records.get(i).get(7).equals("Mobile")) {
+                Mobile mobile = new Mobile(Integer.parseInt(records.get(i).get(0)),
+                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
+                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                );
+
+                mobiles.add(mobile);
+
+            }
+
         }
-
-        return transfers;
-
     }
 
     public static void main(String[] args) {

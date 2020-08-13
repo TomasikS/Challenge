@@ -7,7 +7,7 @@ package transfers;
 
 /**
  *
- * @author HP
+ * @author Tomasik
  */
 public class Saving extends Transfer {
 
