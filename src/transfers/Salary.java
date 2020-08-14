@@ -5,13 +5,15 @@
  */
 package transfers;
 
+import java.util.Date;
+
 /**
  *
- * @author HP
+ * @author Tomasik
  */
 public class Salary extends Transfer {
 
-    public Salary(int id, String accounttype, String currency, String date, String description, Double amount, Boolean debit, String label) {
+    public Salary(int id, String accounttype, String currency, Date date, String description, Double amount, Boolean debit, String label) {
         super(id, accounttype, currency, date, description, amount, debit, label);
     }
 

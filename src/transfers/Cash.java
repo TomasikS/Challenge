@@ -5,13 +5,15 @@
  */
 package transfers;
 
+import java.util.Date;
+
 /**
  *
  * @author Tomasik
  */
 public class Cash extends Transfer {
 
-    public Cash(int id, String accounttype, String currency, String date, String description, Double amount, Boolean debit, String label) {
+    public Cash(int id, String accounttype, String currency, Date date, String description, Double amount, Boolean debit, String label) {
         super(id, accounttype, currency, date, description, amount, debit, label);
     }
 

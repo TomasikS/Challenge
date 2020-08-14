@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +45,8 @@ public class Main {
     private static List<InterestCharges> interestCharges = new ArrayList();
     private static List<Transfers> transfers = new ArrayList();
     private static List<List<String>> records = new ArrayList<>();
-
+    private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    
     public static List<List<String>> readData() throws IOException {
         List<List<String>> data = new ArrayList<>();
         BufferedReader br = null;
@@ -184,106 +187,156 @@ public class Main {
         for (int i = 0; i < records.size(); i++) {
 
             if (records.get(i).get(7).equals("Transfers")) {
-                Transfers transfer = new Transfers(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
+                Transfers transfer = null;
+                try {
+                      transfer = new Transfers(Integer.parseInt(records.get(i).get(0)),
+                            records.get(i).get(1), records.get(i).get(2), formatter.parse(records.get(i).get(3)),
+                            records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                            Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                    );
+                } catch (ParseException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 transfers.add(transfer);
 
             }
 
             if (records.get(i).get(7).equals("Interest charges")) {
-                InterestCharges InterestCharge = new InterestCharges(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
+                InterestCharges InterestCharge = null;
+                try {
+                    InterestCharge = new InterestCharges(Integer.parseInt(records.get(i).get(0)),
+                            records.get(i).get(1), records.get(i).get(2), formatter.parse(records.get(i).get(3)),
+                            records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                            Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                    );
+                } catch (ParseException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 interestCharges.add(InterestCharge);
 
             }
 
             if (records.get(i).get(7).equals("Saving (general)")) {
-                Saving saving = new Saving(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
+                Saving saving = null;
+                try {
+                    saving = new Saving(Integer.parseInt(records.get(i).get(0)),
+                            records.get(i).get(1), records.get(i).get(2), formatter.parse(records.get(i).get(3)),
+                            records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                            Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                    );
+                } catch (ParseException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 savings.add(saving);
             }
 
             if (records.get(i).get(7).equals("Salary or Wages (Main)")) {
-                Salary salary = new Salary(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
+                Salary salary = null;
+                try {
+                    salary = new Salary(Integer.parseInt(records.get(i).get(0)),
+                            records.get(i).get(1), records.get(i).get(2), formatter.parse(records.get(i).get(3)),
+                            records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                            Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                    );
+                } catch (ParseException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 salaries.add(salary);
 
             }
 
             if (records.get(i).get(7).equals("Bank charges")) {
-                BankCharges Bankcharges = new BankCharges(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
+                BankCharges Bankcharges = null;
+                try {
+                    Bankcharges = new BankCharges(Integer.parseInt(records.get(i).get(0)),
+                            records.get(i).get(1), records.get(i).get(2), formatter.parse(records.get(i).get(3)),
+                            records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                            Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                    );
+                } catch (ParseException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 charges.add(Bankcharges);
             }
 
             if (records.get(i).get(7).startsWith("\"")) {
-                Grocery grocery = new Grocery(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
+                Grocery grocery = null;
+                try {
+                    grocery = new Grocery(Integer.parseInt(records.get(i).get(0).substring(1, records.get(i).get(0).length() - 1)),
+                            records.get(i).get(1), records.get(i).get(2), formatter.parse(records.get(i).get(3)),
+                            records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                            Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                    );
+                } catch (ParseException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 groceries.add(grocery);
             }
 
             if (records.get(i).get(7).equals("Interest income")) {
-                InterestIncome interest = new InterestIncome(Integer.parseInt(records.get(i).get(0)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
+                InterestIncome interest = null;
+                try {
+                    interest = new InterestIncome(Integer.parseInt(records.get(i).get(0)),
+                            records.get(i).get(1), records.get(i).get(2),formatter.parse(records.get(i).get(3)),
+                            records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                            Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                    );
+                } catch (ParseException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 interests.add(interest);
 
             }
 
             if (records.get(i).get(7).equals("Credit Card")) {
-                CreditCard card = new CreditCard(Integer.parseInt(records.get(i).get(0)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
+                CreditCard card = null;
+                try {
+                    card = new CreditCard(Integer.parseInt(records.get(i).get(0)),
+                            records.get(i).get(1), records.get(i).get(2), formatter.parse(records.get(i).get(3)),
+                            records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                            Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                    );
+                } catch (ParseException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 cards.add(card);
 
             }
 
             if (records.get(i).get(7).equals("Cash")) {
-                Cash cash = new Cash(Integer.parseInt(records.get(i).get(0)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
+                Cash cash = null;
+                try {
+                    cash = new Cash(Integer.parseInt(records.get(i).get(0)),
+                            records.get(i).get(1), records.get(i).get(2), formatter.parse(records.get(i).get(3)),
+                            records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                            Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                    );
+                } catch (ParseException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 cashes.add(cash);
 
             }
 
             if (records.get(i).get(7).equals("Mobile")) {
-                Mobile mobile = new Mobile(Integer.parseInt(records.get(i).get(0)),
-                        records.get(i).get(1), records.get(i).get(2), records.get(i).get(3),
-                        records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
-                        Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
-                );
+                Mobile mobile = null;
+                try {
+                    mobile = new Mobile(Integer.parseInt(records.get(i).get(0)),
+                            records.get(i).get(1), records.get(i).get(2), formatter.parse(records.get(i).get(3)),
+                            records.get(i).get(4), Double.parseDouble(records.get(i).get(5)),
+                            Boolean.parseBoolean(records.get(i).get(6)), records.get(i).get(7)
+                    );
+                } catch (ParseException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 mobiles.add(mobile);
 

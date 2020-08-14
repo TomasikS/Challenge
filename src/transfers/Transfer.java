@@ -5,6 +5,8 @@
  */
 package transfers;
 
+import java.util.Date;
+
 /**
  *
  * @author Tomasik
@@ -14,7 +16,7 @@ public abstract class Transfer {
     private int id;
     private String accounttype;
     private String currency;
-    private String date;
+    private Date date;
     private String description;
     private Double amount;
     private Boolean debit;
@@ -44,11 +46,11 @@ public abstract class Transfer {
         this.currency = currency;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -84,7 +86,7 @@ public abstract class Transfer {
         this.label = label;
     }
 
-    public Transfer(int id, String accounttype, String currency, String date, String description, Double amount, Boolean debit, String label) {
+    public Transfer(int id, String accounttype, String currency, Date date, String description, Double amount, Boolean debit, String label) {
         this.id = id;
         this.accounttype = accounttype;
         this.currency = currency;
